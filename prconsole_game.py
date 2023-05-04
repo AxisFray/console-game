@@ -96,13 +96,16 @@ def ShowBoard():
 # sxczywtywanie klawiszy 2 proba
 def Keys():
     msvcrt.getwch()
-    global bx, by
+    global bx, by, lpx, lpy
     key = msvcrt.getwche()
-
+    lpx = bx
+    lpy = by
     if key == "H":  # lewo
         if bx - 1 < 0:
             pass
         bx -= 1
+        os.system("cls")
+        ShowBoard()
         os.system("cls")
         ShowBoard()
     if key == "P":  # prawo
@@ -111,10 +114,14 @@ def Keys():
         bx += 1
         os.system("cls")
         ShowBoard()
+        os.system("cls")
+        ShowBoard()
     if key == "M":  # dol
         if by + 1 > size:
             pass
         by += 1
+        os.system("cls")
+        ShowBoard()
         os.system("cls")
         ShowBoard()
     if key == "K":  # gora
@@ -123,6 +130,10 @@ def Keys():
         by -= 1
         os.system("cls")
         ShowBoard()
+        os.system("cls")
+        ShowBoard()
+    lpx = space
+    lpy = space
 
 
 #  prawyp  lewo   dolp prawo
@@ -132,10 +143,10 @@ def Check():
     if Board[bx][by] == enemy:
         print("Przegrales, sprobuj jeszcze raz")
         sys.exit(0)
-    if Board[bx][by] == door:
+    if bx == dx & by == dy:
         print("Wygrales!")
         pass
-    if Board[bx][by] == horse:
+    if bx == hx & by == hy:
         hor += 1  # licznik zdobytych konikow
 
 
@@ -145,6 +156,7 @@ GenBoard()
 ShowBoard()
 while b <= 30:
     Keys()
+    Check()
     b += 1
 
 
