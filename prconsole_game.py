@@ -71,8 +71,6 @@ def ShowBoard():
     body = Board[bodyposx][bodyposy]
     
     
-
-   
     
 #sczytywanie klawiszy 
 def on_key_realise(Key):
@@ -130,11 +128,7 @@ def Check():
         hor += 1 #licznik zdobytych konikow
 
 
-GenBoard()
-ShowBoard()
 Keys()
-ShowBoard()
-
 
 with Listener(on_realise=on_key_realise) as listener:
     listener.join()
