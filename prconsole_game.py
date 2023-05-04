@@ -71,6 +71,8 @@ def ShowBoard():
     body = Board[bodyposx][bodyposy]
     
     
+
+   
     
 #sczytywanie klawiszy 
 def on_key_realise(Key):
@@ -96,16 +98,24 @@ def on_key_realise(Key):
 
 #sxczywtywanie klawiszy 2 proba
 def Keys():
-    key = msvcrt.getche()
+    msvcrt.getwch()
+    key = msvcrt.getwche()
     print(key)
-    if key == b'\x1b[A':
-        print("b\x1b[A")
-    if key == b'\x1b[B':
-        print("b\x1b[B")
-    if key == b'\x1b[C':
-        print("b\x1b[C")
-    if key == b'\x1b[D':
-        print("b\x1b[D")
+    w = 0
+    while w >= 1:
+        if key == b'K':
+           bodyposx -= 1
+           print("sdfwsdf")
+        if key == b'M':
+            bodyposx +=1
+            print("sdfwsdf")
+        if key == b'P':
+            bodyposy += 1
+            print("sdfwsdf")
+        if key == b'H':
+           bodyposy -= 1
+           print("sdfwsdf")
+        else : print("inny przycisk")
     
 
 #sprawdzanie wygranej 
@@ -123,6 +133,7 @@ def Check():
 GenBoard()
 ShowBoard()
 Keys()
+ShowBoard()
 
 
 with Listener(on_realise=on_key_realise) as listener:
