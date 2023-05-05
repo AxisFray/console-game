@@ -7,6 +7,7 @@ import time
 
 size = 20  # wielkosc planszy
 hor = 0  # liczba zdobytych konikow
+hnum = 3
 #"\U0001F532"  space
 #"\U0001F465"  enemy    horse "\U0001F40E"
 # emoji ludzik konik drzwi
@@ -33,22 +34,27 @@ d = 0
 
 # plansza gry
 Board = []
+hxx = [] #ilość konikow
+hyy = []
 
-def WBut():
-    msvcrt.getwch()
-    keyy = msvcrt.getwche()
-    print(keyy)
+
+for f in range(0,hnum):
+    hxx.append(random.randint(0,size-1))
+    hyy.append(random.randint(0,size-1))
 
 # dodawanie wierszy i kolumn
 for y in range(0, size):
     Board.append([])
 
-
+def WBut():
+    msvcrt.getwch()
+    keyy = msvcrt.getwche()
+    print(keyy)
 # generowanie planszy
 def GenBoard():
     for i in range(0, size):
         for j in range(0, size):
-            Board[i].append(random.choice([enemy, space, space, space, space]))
+            Board[i].append(random.choice([enemy,space,enemy,space, space, space]))
     Exit()
     Horse()
     Body()
@@ -64,14 +70,12 @@ def Exit():
 # konik
 def Horse():
     global hx, hy, horse,hx1,hy1
-    if hx == dx & hy == dy:
-        hx = random.randint(0,size)
-        hy = random.randint(0,size)
-    Board[hx][hy] = horse
-    if hx1 == dx & hy1 == dy:
-        hx1 = random.randint(0,size)
-        hy1 = random.randint(0,size)
-    Board[hx1][hy1] = horse
+    for o in range(0,hnum):
+        if hxx[o] == dx & hyy[o] == dy:
+            hxx = random.randint(0,size)
+            hyx = random.randint(0,size)
+        Board[hxx[o]][hyy[o]] = horse
+    
 
 
 # pozycja ludzika
