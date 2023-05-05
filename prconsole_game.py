@@ -104,22 +104,25 @@ def Keys():
         if bx - 1 < 0:
             pass
         bx -= 1
+        Board[lpx][lpy] = space
         os.system("cls")
         ShowBoard()
         os.system("cls")
         ShowBoard()
     if key == "P":  # prawo
-        if bx + 1 > size:
+        if bx + 1 > size - 1:
             pass
         bx += 1
+        Board[lpx][lpy] = space
         os.system("cls")
         ShowBoard()
         os.system("cls")
         ShowBoard()
     if key == "M":  # dol
-        if by + 1 > size:
+        if by + 1 > size - 1:
             pass
         by += 1
+        Board[lpx][lpy] = space
         os.system("cls")
         ShowBoard()
         os.system("cls")
@@ -128,12 +131,12 @@ def Keys():
         if by - 1 < 0:
             pass
         by -= 1
+        Board[lpx][lpy] = space
         os.system("cls")
         ShowBoard()
         os.system("cls")
         ShowBoard()
-    lpx = space
-    lpy = space
+    
 
 
 #  prawyp  lewo   dolp prawo
@@ -154,7 +157,7 @@ os.system("cls")
 b = 0
 GenBoard()
 ShowBoard()
-while b <= 30:
+while b <= 99999999999:
     Keys()
     Check()
     b += 1
