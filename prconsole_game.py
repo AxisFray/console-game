@@ -2,17 +2,19 @@
 import msvcrt
 import sys
 import os
+import time
 
 
 size = 20  # wielkosc planszy
 hor = 0  # liczba zdobytych konikow
-
+#"\U0001F532"  space
+#"\U0001F465"  enemy    horse "\U0001F40E"
 # emoji ludzik konik drzwi
 space = "\U0001F532"
 body = "\U0001F3C3"
 enemy = "\U0001F465"
 horse = "\U0001F40E"
-door = "\U0001F6AA"
+door = "🚪"
 los1 = random.randint(0, size - 1)
 bodyposx = random.randint(0, size - 1)  # ludzik x
 bodyposy = random.randint(0, size - 1)  # ludzik y
@@ -26,6 +28,11 @@ by = bodyposy
 
 # plansza gry
 Board = []
+
+def WBut():
+    msvcrt.getwch()
+    keyy = msvcrt.getwche()
+    print(keyy)
 
 # dodawanie wierszy i kolumn
 for y in range(0, size):
@@ -45,39 +52,32 @@ def GenBoard():
 # drzwi wyjscie cel gry
 def Exit():
     Board[dx][dy] = door
+    
+    
 
 
 # konik
 def Horse():
+    global hx, hy, horse
+    if hx == dx & hy == dy:
+        hx = random.randint(0,size)
+        hy = random.randint(0,size)
     Board[hx][hy] = horse
 
 
 # pozycja ludzika
 def Body():
-    global body
-    Board[bodyposx][bodyposy] = body
-    """
-#sczytywanie klawiszy 
-def on_key_realise(Key):
-    global body
-    if Key == 102:
-        bx += 1
-        print('Released Key %s' % Key)
-        ShowBoard()
-    if Key == 100:
-        bx -= 1
-        print('Released Key %s' % Key)
-        ShowBoard()
-    if Key == 98:
-        by -= 1
-        print('Released Key %s' % Key)
-        ShowBoard()
-    if Key == 104:
-        by += 1
-        print('Released Key %s' % Key)
-        ShowBoard()
+    Board[bx][by] = body
 
-"""
+
+
+def Lose():
+    os.system("cls")
+    print("PRZEGRAŁEŚ!")
+    print("SPROBUJ JESZCZE RAZ")
+    time.sleep(3)
+    sys.exit()
+   
 
 
 # wyswietlanie planszy
@@ -101,66 +101,62 @@ def Keys():
     lpx = bx
     lpy = by
     if key == "H":  # lewo
-        if bx - 1 < 0:
-            pass
+#        if bx - 1 <= 0:
+#            pass
+        if Board[bx - 1][by] == enemy:
+            Lose()
         bx -= 1
         Board[lpx][lpy] = space
         os.system("cls")
         Board[bx][by] = body
         ShowBoard()
     if key == "P":  # prawo
-        if bx + 1 > size - 1:
-            pass
+#        if bx + 1 >= size:
+#            pass
+        if Board[bx + 1][by] == enemy:
+            Lose()
         bx += 1
         Board[lpx][lpy] = space
         os.system("cls")
         Board[bx][by] = body
         ShowBoard()
     if key == "M":  # dol
-        if by + 1 > size - 1:
-            pass
+#       if by + 1 >= size:
+#          pass
+        if Board[bx][by + 1] == enemy:
+            Lose()
         by += 1
         Board[lpx][lpy] = space
         os.system("cls")
         Board[bx][by] = body
         ShowBoard()
     if key == "K":  # gora
-        if by - 1 < 0:
-            pass
+#        if by - 1 <= 0:
+#            pass
+        if Board[bx][by - 1] == enemy:
+            Lose()
         by -= 1
         Board[lpx][lpy] = space
         os.system("cls")
         Board[bx][by] = body
         ShowBoard()
+    if key == "←":
+        sys.exit()
     
 
 
 #  prawyp  lewo   dolp prawo
 # P prawy     H  lewy             K gora       M dol
 # sprawdzanie wygranej
-def Check():
-    if Board[bx][by] == enemy:
-        print("Przegrales, sprobuj jeszcze raz")
-        sys.exit(0)
-    if bx == dx & by == dy:
-        print("Wygrales!")
-        pass
-    if bx == hx & by == hy:
-        hor += 1  # licznik zdobytych konikow
 
+def Play():
+    os.system("cls")
+    b = 0
+    GenBoard()
+    ShowBoard()
+    while b <= 99999999999:
+        Keys()
+        b += 1
 
-os.system("cls")
-b = 0
-GenBoard()
-ShowBoard()
-while b <= 99999999999:
-    Keys()
-    Check()
-    b += 1
+Play()
 
-
-"""
-with Listener(on_realise=on_key_realise) as listener:
-    listener.join()
-    
-"""
