@@ -16,15 +16,20 @@ enemy = "\U0001F465"
 horse = "\U0001F40E"
 door = "🚪"
 los1 = random.randint(0, size - 1)
+
 bodyposx = random.randint(0, size - 1)  # ludzik x
 bodyposy = random.randint(0, size - 1)  # ludzik y
+
 hx = random.randint(0, size - 1)  # konik x
 hy = random.randint(0, size - 1)  # konik y
+hx1 = random.randint(0, size - 1)  # konik x1
+hy1 = random.randint(0, size - 1)  # konik y2
+
 dx = random.randint(0, size - 1)  # drzwi x
 dy = random.randint(0, size - 1)  # drzwi y
 bx = bodyposx
 by = bodyposy
-
+d = 0
 
 # plansza gry
 Board = []
@@ -58,18 +63,27 @@ def Exit():
 
 # konik
 def Horse():
-    global hx, hy, horse
+    global hx, hy, horse,hx1,hy1
     if hx == dx & hy == dy:
         hx = random.randint(0,size)
         hy = random.randint(0,size)
     Board[hx][hy] = horse
+    if hx1 == dx & hy1 == dy:
+        hx1 = random.randint(0,size)
+        hy1 = random.randint(0,size)
+    Board[hx1][hy1] = horse
 
 
 # pozycja ludzika
 def Body():
     Board[bx][by] = body
 
+def LastPos():
+    if d == 1:
+        Board[lpx][lpy] = door
+    else: Board[lpx][lpy] = space
 
+    
 
 def Lose():
     os.system("cls")
@@ -104,67 +118,72 @@ def Keys():
     msvcrt.getwch()
     global bx, by, lpx, lpy
     key = msvcrt.getwche()
+    
     lpx = bx
     lpy = by
     if key == "H":  # lewo
-#        if bx - 1 <= 0:
+#       if bx - 1 <= 0:
 #            pass
         if Board[bx - 1][by] == enemy:
             Lose()
-        if Board[bx - 1][by] == horse:
+        elif Board[bx - 1][by] == horse:
             hor += 1
-        if Board[bx - 1][by] == door:
+        elif Board[bx - 1][by] == door:
             if hor == 1:
                 Win()
+            else: d += 1
         bx -= 1
-        Board[lpx][lpy] = space
+        LastPos()
         os.system("cls")
-        Board[bx][by] = body
+        Body()
         ShowBoard()
-    if key == "P":  # prawo
+    elif key == "P":  # prawo
 #        if bx + 1 >= size:
 #            pass
         if Board[bx + 1][by] == enemy:
             Lose()
-        if Board[bx + 1][by] == horse:
+        elif Board[bx + 1][by] == horse:
             hor += 1
-        if Board[bx + 1][by] == door:
+        elif Board[bx + 1][by] == door:
             if hor == 1:
                 Win()
+            else: d += 1
         bx += 1
-        Board[lpx][lpy] = space
+        LastPos()
         os.system("cls")
-        Board[bx][by] = body
+        Body()
         ShowBoard()
-    if key == "M":  # dol
+    elif key == "M":  # dol
 #       if by + 1 >= size:
 #          pass
         if Board[bx][by + 1] == enemy:
             Lose()
-        if Board[bx][by + 1] == horse:
+        elif Board[bx][by + 1] == horse:
             hor += 1
-        if Board[bx][by + 1] == door:
+        elif Board[bx][by + 1] == door:
             if hor == 1:
                 Win()
+            else: d += 1
         by += 1
-        Board[lpx][lpy] = space
+        LastPos()
         os.system("cls")
-        Board[bx][by] = body
+        Body()
         ShowBoard()
-    if key == "K":  # gora
+    elif key == "K":  # gora
 #        if by - 1 <= 0:
 #            pass
         if Board[bx][by - 1] == enemy:
             Lose()
-        if Board[bx][by - 1] == horse:
+        elif Board[bx][by - 1] == horse:
             hor += 1
-        if Board[bx][by - 1] == door:
+        elif Board[bx][by - 1] == door:
             if hor == 1:
                 Win()
+            else: d += 1
         by -= 1
-        Board[lpx][lpy] = space
+        LastPos()
         os.system("cls")
-        Board[bx][by] = body
+        Body()
         ShowBoard()
     
     
