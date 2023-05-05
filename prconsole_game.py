@@ -106,8 +106,7 @@ def Keys():
         bx -= 1
         Board[lpx][lpy] = space
         os.system("cls")
-        ShowBoard()
-        os.system("cls")
+        Board[bx][by] = body
         ShowBoard()
     if key == "P":  # prawo
         if bx + 1 > size - 1:
@@ -115,8 +114,7 @@ def Keys():
         bx += 1
         Board[lpx][lpy] = space
         os.system("cls")
-        ShowBoard()
-        os.system("cls")
+        Board[bx][by] = body
         ShowBoard()
     if key == "M":  # dol
         if by + 1 > size - 1:
@@ -124,8 +122,7 @@ def Keys():
         by += 1
         Board[lpx][lpy] = space
         os.system("cls")
-        ShowBoard()
-        os.system("cls")
+        Board[bx][by] = body
         ShowBoard()
     if key == "K":  # gora
         if by - 1 < 0:
@@ -133,8 +130,7 @@ def Keys():
         by -= 1
         Board[lpx][lpy] = space
         os.system("cls")
-        ShowBoard()
-        os.system("cls")
+        Board[bx][by] = body
         ShowBoard()
     
 
