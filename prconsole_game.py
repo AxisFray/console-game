@@ -75,9 +75,15 @@ def Lose():
     os.system("cls")
     print("PRZEGRAŁEŚ!")
     print("SPROBUJ JESZCZE RAZ")
-    time.sleep(3)
+    time.sleep(2)
     sys.exit()
-   
+    
+def Win():
+    os.system("cls")
+    print("WYGRYWASZ!")
+    print("GRATULACJE")
+    time.sleep(2)
+    sys.exit()
 
 
 # wyswietlanie planszy
@@ -105,6 +111,11 @@ def Keys():
 #            pass
         if Board[bx - 1][by] == enemy:
             Lose()
+        if Board[bx - 1][by] == horse:
+            hor += 1
+        if Board[bx - 1][by] == door:
+            if hor == 1:
+                Win()
         bx -= 1
         Board[lpx][lpy] = space
         os.system("cls")
@@ -115,6 +126,11 @@ def Keys():
 #            pass
         if Board[bx + 1][by] == enemy:
             Lose()
+        if Board[bx + 1][by] == horse:
+            hor += 1
+        if Board[bx + 1][by] == door:
+            if hor == 1:
+                Win()
         bx += 1
         Board[lpx][lpy] = space
         os.system("cls")
@@ -125,6 +141,11 @@ def Keys():
 #          pass
         if Board[bx][by + 1] == enemy:
             Lose()
+        if Board[bx][by + 1] == horse:
+            hor += 1
+        if Board[bx][by + 1] == door:
+            if hor == 1:
+                Win()
         by += 1
         Board[lpx][lpy] = space
         os.system("cls")
@@ -135,13 +156,17 @@ def Keys():
 #            pass
         if Board[bx][by - 1] == enemy:
             Lose()
+        if Board[bx][by - 1] == horse:
+            hor += 1
+        if Board[bx][by - 1] == door:
+            if hor == 1:
+                Win()
         by -= 1
         Board[lpx][lpy] = space
         os.system("cls")
         Board[bx][by] = body
         ShowBoard()
-    if key == "←":
-        sys.exit()
+    
     
 
 
