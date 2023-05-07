@@ -30,7 +30,7 @@ dx = random.randint(0, size - 1)  # drzwi x
 dy = random.randint(0, size - 1)  # drzwi y
 bx = bodyposx
 by = bodyposy
-d = 0
+d = False
 
 # plansza gry
 Board = []
@@ -69,11 +69,11 @@ def Exit():
 
 # konik
 def Horse():
-    global hx, hy, horse,hx1,hy1
+    global hxx, hyy, horse,hx1,hy1
     for o in range(0,hnum):
         if hxx[o] == dx & hyy[o] == dy:
             hxx = random.randint(0,size)
-            hyx = random.randint(0,size)
+            hyy = random.randint(0,size)
         Board[hxx[o]][hyy[o]] = horse
     
 
@@ -83,11 +83,11 @@ def Body():
     Board[bx][by] = body
 
 def LastPos():
-    if d == 1:
+    global d
+    if d == True:
         Board[lpx][lpy] = door
     else: Board[lpx][lpy] = space
-
-    
+    d = False
 
 def Lose():
     os.system("cls")
@@ -100,6 +100,7 @@ def Win():
     os.system("cls")
     print("WYGRYWASZ!")
     print("GRATULACJE")
+    print("zebrałeś " , hor , " konikow")
     time.sleep(2)
     sys.exit()
 
@@ -120,7 +121,7 @@ def ShowBoard():
 # sxczywtywanie klawiszy 2 proba
 def Keys():
     msvcrt.getwch()
-    global bx, by, lpx, lpy
+    global bx, by, lpx, lpy, hor, d
     key = msvcrt.getwche()
     
     lpx = bx
@@ -149,9 +150,9 @@ def Keys():
         elif Board[bx + 1][by] == horse:
             hor += 1
         elif Board[bx + 1][by] == door:
-            if hor == 1:
+            if hor >= 1:
                 Win()
-            else: d += 1
+            else: d = True 
         bx += 1
         LastPos()
         os.system("cls")
