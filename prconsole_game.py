@@ -127,69 +127,65 @@ def Keys():
     lpx = bx
     lpy = by
     if key == "H":  # lewo
-#       if bx - 1 <= 0:
-#            pass
-        if Board[bx - 1][by] == enemy:
-            Lose()
-        elif Board[bx - 1][by] == horse:
-            hor += 1
-        elif Board[bx - 1][by] == door:
-            if hor == 1:
-                Win()
-            else: d += 1
-        bx -= 1
-        LastPos()
-        os.system("cls")
-        Body()
-        ShowBoard()
+        if bx - 1 != -1:
+            if Board[bx - 1][by] == enemy:
+                    Lose()
+            elif Board[bx - 1][by] == horse:
+                    hor += 1
+            elif Board[bx - 1][by] == door:
+               if hor == 1:
+                   Win()
+               else: d += 1
+            bx -= 1
+            LastPos()
+            os.system("cls")
+            Body()
+            ShowBoard()
     elif key == "P":  # prawo
-#        if bx + 1 >= size:
-#            pass
-        if Board[bx + 1][by] == enemy:
-            Lose()
-        elif Board[bx + 1][by] == horse:
-            hor += 1
-        elif Board[bx + 1][by] == door:
-            if hor >= 1:
-                Win()
-            else: d = True 
-        bx += 1
-        LastPos()
-        os.system("cls")
-        Body()
-        ShowBoard()
+        if bx + 1 != size:
+            if Board[bx + 1][by] == enemy:
+                Lose()
+            elif Board[bx + 1][by] == horse:
+                hor += 1
+            elif Board[bx + 1][by] == door:
+                if hor >= 1:
+                    Win()
+                else: d = True 
+            bx += 1
+            LastPos()
+            os.system("cls")
+            Body()
+            ShowBoard()
     elif key == "M":  # dol
-#       if by + 1 >= size:
-#          pass
-        if Board[bx][by + 1] == enemy:
-            Lose()
-        elif Board[bx][by + 1] == horse:
-            hor += 1
-        elif Board[bx][by + 1] == door:
-            if hor == 1:
-                Win()
-            else: d += 1
-        by += 1
-        LastPos()
-        os.system("cls")
-        Body()
-        ShowBoard()
+        if by + 1 != size:
+            if Board[bx][by + 1] == enemy:
+                Lose()
+            elif Board[bx][by + 1] == horse:
+                hor += 1
+            elif Board[bx][by + 1] == door:
+                if hor == 1:
+                    Win()
+                else: d += 1
+            by += 1
+            LastPos()
+            os.system("cls")
+            Body()
+            ShowBoard()
     elif key == "K":  # gora
-#        if by - 1 <= 0:
-#            pass
-        if Board[bx][by - 1] == enemy:
-            Lose()
-        elif Board[bx][by - 1] == horse:
-            hor += 1
-        elif Board[bx][by - 1] == door:
-            if hor == 1:
-                Win()
-            else: d += 1
-        by -= 1
-        LastPos()
-        os.system("cls")
-        Body()
-        ShowBoard()
+        if by - 1 != -1:
+            if Board[bx][by - 1] == enemy:
+                Lose()
+            elif Board[bx][by - 1] == horse:
+                hor += 1
+            elif Board[bx][by - 1] == door:
+                if hor == 1:
+                    Win()
+                else: d += 1
+            by -= 1
+            LastPos()
+            os.system("cls")
+            Body()
+            ShowBoard()
     
     
 
