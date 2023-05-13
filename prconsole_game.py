@@ -3,36 +3,37 @@ import msvcrt
 import sys
 import os
 import time
-
+from colorama import Fore, Back, Style
 
 #---------------------USTAWIENIA GRY-----------------
 
-size = 20  # wielkosc planszy
-hor = 0  # liczba zdobytych konikow
+size = 30  # wielkosc planszy
 hnum = 5        #ile konikow
-gnum = 2        #ile duchow
-
+gnum = 5        #ile duchow
+space = Fore.BLUE+"\U0001F532"
+body = "\U0001F3C3"
+enemy = Fore.BLUE+"⬛"
+horse = Fore.LIGHTRED_EX+"\U0001F40E"
+door = "🚪"
+ghost = Fore.WHITE+"\U0001F47B"
 
 
 #"\U0001F532"  space
 #"\U0001F465"  enemy    horse "\U0001F40E"
 # emoji ludzik konik drzwi
-space = "\U0001F532"
-body = "\U0001F3C3"
-enemy = "\U0001F465"
-horse = "\U0001F40E"
-door = "🚪"
-ghost = "\U0001F47B"
+
 los1 = random.randint(0, size - 1)
 
 bodyposx = random.randint(0, size - 1)  # ludzik x
 bodyposy = random.randint(0, size - 1)  # ludzik y
 
+hor = 0  # liczba zdobytych konikow
 hx = random.randint(0, size - 1)  # konik x
 hy = random.randint(0, size - 1)  # konik y
 hx1 = random.randint(0, size - 1)  # konik x1
 hy1 = random.randint(0, size - 1)  # konik y2
-
+hxx = [] 
+hyy = []
 
 gx = []         #duch x
 gy = []         #duch y
@@ -47,8 +48,7 @@ d = False
 
 # plansza gry
 Board = []
-hxx = [] 
-hyy = []
+
 
 
 for t in range(0,gnum):
@@ -127,16 +127,20 @@ def LastPos():
 
 def Lose():
     os.system("cls")
-    print("PRZEGRAŁEŚ!")
-    print("SPROBUJ JESZCZE RAZ")
+    print(Fore.RED + "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+    print(Fore.RED +"              PRZEGRAŁEŚ!            ")
+    print(Fore.RED +"          SPROBUJ JESZCZE RAZ        ")
+    print(Fore.RED +"-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
     time.sleep(2)
     sys.exit()
     
 def Win():
     os.system("cls")
-    print("WYGRYWASZ!")
-    print("GRATULACJE")
-    print("zebrałeś " , hor , " konikow")
+    print(Fore.GREEN +"-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+    print(Fore.GREEN +"             WYGRYWASZ!               ")
+    print(Fore.GREEN +"             GRATULACJE               ")
+    print(Fore.GREEN +"      zebrałeś " , hor , " konikow    ")
+    print(Fore.GREEN +"-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
     time.sleep(2)
     sys.exit()
 
@@ -155,18 +159,28 @@ def GhCheck():
         if Board[bx][by - 1] == ghost:
             gh +=1
     
+def Info():
+    print(Fore.GREEN+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+    print(Fore.GREEN+"                ZBIERZ KONIKI I WYJDZ PRZEZ DRZWI           ")
+    print(Fore.GREEN+"             DUCHY POMOGĄ CI W PRZEJŚCIU PRZEZ ŚCIANY       ")
+    print(Fore.GREEN+"-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+    time.sleep(4)
+    os.system('cls')
+    
+    
+
 
 # wyswietlanie planszy
 def ShowBoard():
     global body
-
+    Board[bx][by] = body
     for r in range(0, size):
         for t in range(0, size):
             if t == size - 1:
-                print(Board[r][t])
+                print(Fore.MAGENTA+Board[r][t])
             else:
-                print(Board[r][t], end=" ")
-    Board[bx][by] = body
+                print(Fore.MAGENTA+Board[r][t], end=" ")
+    
 
 
 # sxczywtywanie klawiszy 2 proba
@@ -274,6 +288,7 @@ def Keys():
 def Play():
     os.system("cls")
     b = 0
+    Info()
     GenBoard()
     ShowBoard()
     key = "H"
