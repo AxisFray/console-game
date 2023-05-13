@@ -9,7 +9,7 @@ import time
 
 size = 20  # wielkosc planszy
 hor = 0  # liczba zdobytych konikow
-hnum = 3        #ile konikow
+hnum = 5        #ile konikow
 gnum = 2        #ile duchow
 
 
@@ -71,15 +71,22 @@ def WBut():
 def GenBoard():
     for i in range(0, size):
         for j in range(0, size):
-            Board[i].append(random.choice([enemy,space,enemy,space, space, space]))
-    Exit()
+            Board[i].append(random.choice([enemy,space,enemy,space, space, space,space]))
+    
     Horse()
-    Body()
     Ghost()
+    Exit()
+    Body()
+    
+    
 
 
 # drzwi wyjscie cel gry
 def Exit():
+    global dx,dy
+    if dx == bx & dy == by:
+        dx = random.randint(0,size-1)
+        dy = random.randint(0,size-1)
     Board[dx][dy] = door
     
     
@@ -190,7 +197,7 @@ def Keys():
             ShowBoard()
             if gh1 == True:
                 gh -= 1
-                gh1 == False
+                gh1 = False
             
     elif key == "P":  # prawo
         if bx + 1 != size:
@@ -212,7 +219,7 @@ def Keys():
             ShowBoard()
             if gh1 == True:
                 gh -= 1
-                gh1 == False
+                gh1 = False
     elif key == "M":  # dol
         if by + 1 != size:
             if Board[bx][by + 1] == enemy:
@@ -272,7 +279,6 @@ def Play():
     key = "H"
     while key != "q":
         Keys()
-        print(gh)
         b += 1
     sys.exit()
 
