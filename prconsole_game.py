@@ -186,7 +186,7 @@ def Keys():
             elif Board[bx - 1][by] == horse:
                     hor += 1
             elif Board[bx - 1][by] == door:
-               if hor == 1:
+               if hor >= 1:
                    Win()
                else: d = True
             GhCheck()
@@ -229,7 +229,7 @@ def Keys():
             elif Board[bx][by + 1] == horse:
                 hor += 1
             elif Board[bx][by + 1] == door:
-                if hor == 1:
+                if hor >= 1:
                     Win()
                 else: d = True
             GhCheck()
@@ -250,7 +250,7 @@ def Keys():
             elif Board[bx][by - 1] == horse:
                 hor += 1
             elif Board[bx][by - 1] == door:
-                if hor == 1:
+                if hor >= 1:
                     Win()
                 else: d = True
             GhCheck()
