@@ -10,12 +10,12 @@ from colorama import Fore, Back, Style
 size = 30  # wielkosc planszy
 hnum = 5        #ile konikow
 gnum = 5        #ile duchow
-space = Fore.BLUE+"\U0001F532"
+space = Fore.WHITE+"\U0001F532"
 body = "\U0001F3C3"
-enemy = Fore.BLUE+"⬛"
+enemy = Fore.WHITE+"⬛"
 horse = Fore.LIGHTRED_EX+"\U0001F40E"
 door = "🚪"
-ghost = Fore.WHITE+"\U0001F47B"
+ghost = Fore.BLUE+"\U0001F47B"
 
 
 #"\U0001F532"  space
