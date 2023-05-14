@@ -161,8 +161,10 @@ def GhCheck():
     
 def Info():
     print(Fore.GREEN+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
-    print(Fore.GREEN+"                ZBIERZ KONIKI I WYJDZ PRZEZ DRZWI           ")
+    print(Fore.GREEN+"                ZBIERZ KONIKI I WYJDŹ PRZEZ DRZWI           ")
     print(Fore.GREEN+"             DUCHY POMOGĄ CI W PRZEJŚCIU PRZEZ ŚCIANY       ")
+    print(Fore.GREEN+"                     PORUSZAJ SIĘ STRZAŁKAMI                ")
+    print(Fore.GREEN+"             ←	          ↑       	→	       ↓          ")
     print(Fore.GREEN+"-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
     time.sleep(4)
     os.system('cls')
